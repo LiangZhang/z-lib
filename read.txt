@@ -1,0 +1,52 @@
+win7安装部署git:
+-.注册github账号
+
+二.安装。
+--->http://help.github.com/
+1.下载最新的最适合你git的版本
+	http://git-scm.com/download
+2.下载msysGit,我选择了个exe版本
+	http://code.google.com/p/msysgit/downloads/list
+
+安装说明msysGis说明：
+  当进行到安装路径选择：
+有三项：
+ 1.基本安装
+   This is the most conservtive choice if you are concemed about the stability of your system。。。
+   你不太清楚你机器的系统稳定性你就选择它，你不能修改安装路径，这是最[保守]安全的选择。
+ 2.用Window Command运行Git
+   this option is considered safe and on conflicts with other tools are Known
+   次选项被认为是安全并对已知的其他工具没有冲突,仅仅Git工具被安装，它来自Cygwin[cygwin是一个在windows平台上
+运行的unix模拟环境，是cygnus solutions公司开发的自由软件]
+ 3.如果团队中可能有使用Linux unix等非windows系统的话，最好选择 Use unix style line endings msysgit装完
+就能用命令行的方式玩git了，如果需要一个类似乌龟svn的GUI工具，可以装下 tortoisegit
+
+三.部署：
+
+1.git要求使用者必须提供自己的身份标识，为此我们需要在git bash中执行以下命令：
+git config --global user.name 'xxxx'
+git config --global user.email xxx@xxxx.com
+
+
+2.在本地创建git仓库。
+ a.>mkdir 目录-->建立仓库目录[比如d:\z-lib]
+ b.>cd [新建的目录]
+ b.>git init 初始化仓库
+执行此操作后，git将在z-lib目录下创建一个隐藏目录（.git），这个目录就是git用来管理软件版本的仓库。
+
+3.使用git管理项目。
+#cp /d/ZLIB/z-Lib/* .  -->复制你的项目文件到git仓库目录下
+git add xxx xxx ...添加文件名
+git commit -m "本次更新说明"
+
+git add命令可以将参数指定的文件添加到git仓库索引中，如果你一次添加太多文件可以使用：git add . 命令全部添加。
+git commit命令才是真正的将文件添加到git仓库中去，-m选项允许在命令行后直接给出每次添加的简短说明（PS：我们强烈推
+荐你再每次提交时都给出一个说明，以便项目版本的查阅等），如果没有给出此命令将调用默认文本编辑器以便你添加说明。
+
+4.本地git项目提交到。
+前提是登入github主页点击“create a new one"根据提示完成项目创建
+
+
+git add . -->提交全部修改
+git remote add origin git@github.com:LiangZhang/z-lib.git-->用自己的用户名称和库项目上传代码
+git push origin master-->提交代码
